@@ -1,1 +1,39 @@
-<p>character works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Gerenciamento de personagem</li>
+    </ol>
+  </nav>
+  <div class="container">
+    <div class="card list-car">
+      <h5 class="card-header">Lista de personagem</h5>
+      <div class="card-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Classe</th>
+                <th scope="col">Raça</th>
+                <th scope="col">Level</th>
+                <th scope="col">Pontos de vida</th>
+                <th scope="col">Pontos de magica</th>
+                <th scope="col">Pontos de ataque</th>
+                <th scope="col">Pontos de defesa</th>
+                <th scope="col">Pontos de proeficiencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let character of characters">
+                <td>{{character.name}}</td>
+                <td>{{character.characterClass}}</td>
+                <td>{{character.race}}</td>
+                <td>{{character.level}}</td>
+                <td>{{character.lifePoints}}</td>
+                <td>{{character.magicPoints}}</td>
+                <td>{{character.attackPoints}}</td>
+                <td>{{character.defensePoints}}</td>
+                <td>{{character.expertisePoints}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>

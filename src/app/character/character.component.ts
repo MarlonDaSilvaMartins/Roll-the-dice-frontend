@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterService } from './service/character.service';
+import { Character } from './model/character';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-character',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterComponent implements OnInit {
 
-  constructor() { }
+  character = {} as Character;
+  characters: Character[];
+
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
+    this.getCharacters();
   }
 
+  getCharacters() {
+    this.characterService.getCharacter().subscribe((characters: Character[]) => {
+      this.characters = characters;
+    });
+  }
+
+  cleanForm(form: NgForm) {
+    this.getCharacters();
+    form.resetForm();
+    this.character = {} as Character;
+  }
 }
