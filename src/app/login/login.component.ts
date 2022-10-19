@@ -10,9 +10,9 @@ export class LoginComponent {
 
   constructor(private router: Router) { }
 
-  onSubmit() {
-    this.router.navigate(['../character']);
-  }
-
   @Output() submitEM = new EventEmitter();
+
+  login() {
+    this.router.navigate(['/character']);
+  }
 }
