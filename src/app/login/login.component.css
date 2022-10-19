@@ -24,6 +24,11 @@ body {
   text-decoration: none;
   color: #ffffff;
 }
+
+.btn-block{
+  background-color: rgb(58, 57, 57);
+}
+
 .box {
   position: relative;
   top: 0;
