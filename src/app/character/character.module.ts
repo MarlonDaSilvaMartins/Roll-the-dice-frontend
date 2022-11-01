@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { CharacterRoutingModule } from './character-routing.module';
 import { CharacterComponent } from './character.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from "@angular/material/table";
+import {FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -12,8 +13,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CharacterRoutingModule,
-    HttpClientModule,
-    FormsModule
+    MatTableModule,
+    FormsModule,
+    FlexModule
   ]
 })
 export class CharacterModule { }

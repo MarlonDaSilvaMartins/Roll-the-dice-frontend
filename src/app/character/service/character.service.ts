@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Character } from '../model/character';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
-  url = 'http://localhost:8080/cv1/character';
+  url = 'http://localhost:8080/v1/character';
 
   constructor(private httpClient: HttpClient) { }
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*' })
   }
 
   getCharacter(): Observable<Character[]> {
-    return this.httpClient.get<Character[]>(this.url)
+    return this.httpClient.get<Character[]>(this.url, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError))

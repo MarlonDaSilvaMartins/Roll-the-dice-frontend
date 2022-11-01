@@ -1,39 +1,25 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">Gerenciamento de personagem</li>
-    </ol>
-  </nav>
-  <div class="container">
-    <div class="card list-car">
-      <h5 class="card-header">Lista de personagem</h5>
-      <div class="card-body">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Classe</th>
-                <th scope="col">Raça</th>
-                <th scope="col">Level</th>
-                <th scope="col">Pontos de vida</th>
-                <th scope="col">Pontos de magica</th>
-                <th scope="col">Pontos de ataque</th>
-                <th scope="col">Pontos de defesa</th>
-                <th scope="col">Pontos de proeficiencia</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let character of characters">
-                <td>{{character.name}}</td>
-                <td>{{character.characterClass}}</td>
-                <td>{{character.race}}</td>
-                <td>{{character.level}}</td>
-                <td>{{character.lifePoints}}</td>
-                <td>{{character.magicPoints}}</td>
-                <td>{{character.attackPoints}}</td>
-                <td>{{character.defensePoints}}</td>
-                <td>{{character.expertisePoints}}</td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
-    </div>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+    <mat-cell *matCellDef="let character">{{character.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="characterClass">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Classe</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let character">{{character.characterClass}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="race">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Raça</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let character">{{character.race}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="level">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let character">{{character.level}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

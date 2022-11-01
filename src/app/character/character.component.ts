@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CharacterService } from './service/character.service';
 import { Character } from './model/character';
-import { NgForm } from '@angular/forms';
+import { MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-character',
@@ -10,25 +10,18 @@ import { NgForm } from '@angular/forms';
 })
 export class CharacterComponent implements OnInit {
 
-  character = {} as Character;
-  characters: Character[];
+  displayedColumns: string[] = ['name', 'characterClass', 'race', 'level'];
+  dataSource: MatTableDataSource<any>;
 
   constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
-    console.log('charater comonent')
-    //this.getCharacters();
+    this.getCharacters();
   }
 
   getCharacters() {
     this.characterService.getCharacter().subscribe((characters: Character[]) => {
-      this.characters = characters;
+      this.dataSource = new MatTableDataSource(characters);
     });
-  }
-
-  cleanForm(form: NgForm) {
-    this.getCharacters();
-    form.resetForm();
-    this.character = {} as Character;
   }
 }
