@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { CharacterService } from './service/character.service';
-import { Character } from './model/character';
-import { MatTableDataSource} from "@angular/material/table";
+import {CharacterService} from './service/character.service';
+import {Character} from './model/character';
+import {MatTableDataSource} from "@angular/material/table";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponent} from "./dialog/dialog.component";
 
 @Component({
   selector: 'app-character',
@@ -13,10 +15,17 @@ export class CharacterComponent implements OnInit {
   displayedColumns: string[] = ['name', 'characterClass', 'race', 'level', 'action'];
   dataSource: MatTableDataSource<any>;
 
-  constructor(private characterService: CharacterService) { }
+  constructor(private dialog : MatDialog, private characterService: CharacterService) {
+  }
 
   ngOnInit(): void {
     this.getCharacters();
+  }
+
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+        width: '30%'
+    });
   }
 
   getCharacters() {
@@ -25,17 +34,22 @@ export class CharacterComponent implements OnInit {
     });
   }
 
-  updateCharacter(character : Character) {
+  createCharacter(character: Character) {
+    this.characterService.createCharacter(character).subscribe((character: Character) => {
+    })
+  }
+
+  updateCharacter(character: Character) {
     this.characterService.updateCharacter(character).subscribe((character: Character) => {
     })
   }
 
-  deleteCharacter(id : string) {
+  deleteCharacter(id: string) {
     this.characterService.deleteCharacter(id).subscribe({
-      next:(res)=>{
+      next: (res) => {
         this.getCharacters();
       },
-      error:()=>{
+      error: () => {
         alert("Erro ao deletar personagem");
       }
     });

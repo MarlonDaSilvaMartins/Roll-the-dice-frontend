@@ -21,6 +21,13 @@ export class CharacterService {
         catchError(this.handleError))
   }
 
+  createCharacter(character : Character): Observable<Character> {
+    return this.httpClient.post<Character>(this.url, character)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
   updateCharacter(character : Character): Observable<Character> {
     return this.httpClient.put<Character>(this.url.concat("/"+character.id), character)
       .pipe(

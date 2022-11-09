@@ -1,38 +1,44 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+<div class="mainContainer">
+  <div class="demo-button-container" [align]="'end'">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+      Adicionar personagem
+    </button>
+  </div>
 
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
-    <mat-cell *matCellDef="let character">{{character.name}}</mat-cell>
-  </ng-container>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let character">{{character.name}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="characterClass">
-    <mat-header-cell mat-header-cell *matHeaderCellDef>Classe</mat-header-cell>
-    <mat-cell mat-cell *matCellDef="let character">{{character.characterClass}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="characterClass">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Classe</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let character">{{character.characterClass}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="race">
-    <mat-header-cell mat-header-cell *matHeaderCellDef>Raça</mat-header-cell>
-    <mat-cell mat-cell *matCellDef="let character">{{character.race}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="race">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Raça</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let character">{{character.race}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="level">
-    <mat-header-cell mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
-    <mat-cell mat-cell *matCellDef="let character">{{character.level}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="level">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let character">{{character.level}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="action">
-    <mat-header-cell mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
-    <mat-cell mat-cell *matCellDef="let character">
-      <button mat-icon-button color="primary">
-        <mat-icon >edit</mat-icon>
-      </button>
-      <button mat-icon-button (click)="deleteCharacter(character.id)" color="warn">
-        <mat-icon >delete</mat-icon>
-      </button>
-    </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let character">
+        <button mat-icon-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteCharacter(character.id)" color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
 
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
