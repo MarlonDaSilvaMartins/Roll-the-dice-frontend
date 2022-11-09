@@ -4,6 +4,7 @@
 }
 
 .demo-button-container {
+  align-content: center;
   padding-bottom: 16px;
 }
 

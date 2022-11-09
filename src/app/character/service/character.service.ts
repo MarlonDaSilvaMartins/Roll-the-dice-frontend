@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { Character } from '../model/character';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError, retry} from 'rxjs/operators';
+import {Character} from '../model/character';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,29 @@ export class CharacterService {
 
   url = 'http://localhost:8080/v1/character';
 
-  constructor(private httpClient: HttpClient) { }
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*' })
+  constructor(private httpClient: HttpClient) {
   }
 
-  getCharacter(): Observable<Character[]> {
-    return this.httpClient.get<Character[]>(this.url, this.httpOptions)
+  getCharacters(): Observable<Character[]> {
+    return this.httpClient.get<Character[]>(this.url)
       .pipe(
         retry(2),
         catchError(this.handleError))
   }
 
+  updateCharacter(character : Character): Observable<Character> {
+    return this.httpClient.put<Character>(this.url.concat("/"+character.id), character)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
+  deleteCharacter(id: string) {
+    return this.httpClient.delete<Character>(this.url.concat("/"+id))
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

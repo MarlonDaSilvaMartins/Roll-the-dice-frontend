@@ -6,6 +6,8 @@ import { CharacterComponent } from './character.component';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from "@angular/material/table";
 import {FlexModule} from "@angular/flex-layout";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {FlexModule} from "@angular/flex-layout";
     CharacterRoutingModule,
     MatTableModule,
     FormsModule,
-    FlexModule
+    FlexModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class CharacterModule { }

@@ -10,7 +10,7 @@ import { MatTableDataSource} from "@angular/material/table";
 })
 export class CharacterComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'characterClass', 'race', 'level'];
+  displayedColumns: string[] = ['name', 'characterClass', 'race', 'level', 'action'];
   dataSource: MatTableDataSource<any>;
 
   constructor(private characterService: CharacterService) { }
@@ -20,8 +20,24 @@ export class CharacterComponent implements OnInit {
   }
 
   getCharacters() {
-    this.characterService.getCharacter().subscribe((characters: Character[]) => {
+    this.characterService.getCharacters().subscribe((characters: Character[]) => {
       this.dataSource = new MatTableDataSource(characters);
+    });
+  }
+
+  updateCharacter(character : Character) {
+    this.characterService.updateCharacter(character).subscribe((character: Character) => {
+    })
+  }
+
+  deleteCharacter(id : string) {
+    this.characterService.deleteCharacter(id).subscribe({
+      next:(res)=>{
+        this.getCharacters();
+      },
+      error:()=>{
+        alert("Erro ao deletar personagem");
+      }
     });
   }
 }

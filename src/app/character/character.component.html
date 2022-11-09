@@ -20,6 +20,19 @@
     <mat-cell mat-cell *matCellDef="let character">{{character.level}}</mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="action">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let character">
+      <button mat-icon-button color="primary">
+        <mat-icon >edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteCharacter(character.id)" color="warn">
+        <mat-icon >delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
