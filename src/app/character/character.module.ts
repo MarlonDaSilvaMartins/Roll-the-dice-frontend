@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {CharacterRoutingModule} from './character-routing.module';
 import {CharacterComponent} from './character.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatTableModule} from "@angular/material/table";
 import {FlexModule} from "@angular/flex-layout";
 import {MatIconModule} from "@angular/material/icon";
@@ -29,7 +29,9 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatDialogModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CharacterModule {

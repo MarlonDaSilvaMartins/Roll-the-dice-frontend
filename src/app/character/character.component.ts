@@ -15,7 +15,7 @@ export class CharacterComponent implements OnInit {
   displayedColumns: string[] = ['name', 'characterClass', 'race', 'level', 'action'];
   dataSource: MatTableDataSource<any>;
 
-  constructor(private dialog : MatDialog, private characterService: CharacterService) {
+  constructor(private dialog: MatDialog, private characterService: CharacterService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class CharacterComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(DialogComponent, {
-        width: '30%'
+      width: '30%'
     });
   }
 
@@ -32,16 +32,6 @@ export class CharacterComponent implements OnInit {
     this.characterService.getCharacters().subscribe((characters: Character[]) => {
       this.dataSource = new MatTableDataSource(characters);
     });
-  }
-
-  createCharacter(character: Character) {
-    this.characterService.createCharacter(character).subscribe((character: Character) => {
-    })
-  }
-
-  updateCharacter(character: Character) {
-    this.characterService.updateCharacter(character).subscribe((character: Character) => {
-    })
   }
 
   deleteCharacter(id: string) {
