@@ -28,8 +28,9 @@ export class CharacterService {
         catchError(this.handleError))
   }
 
-  updateCharacter(character : Character): Observable<Character> {
-    return this.httpClient.put<Character>(this.url.concat("/"+character.id), character)
+  updateCharacter(character : Character, id: string): Observable<Character> {
+    character.id = id;
+    return this.httpClient.put<Character>(this.url, character)
       .pipe(
         retry(2),
         catchError(this.handleError))

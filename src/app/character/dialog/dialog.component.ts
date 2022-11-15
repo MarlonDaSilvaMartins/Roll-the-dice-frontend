@@ -25,6 +25,7 @@ export class DialogComponent implements OnInit {
       name: ['', Validators.required],
       characterClass: ['', Validators.required],
       race: ['', Validators.required],
+      level: ['', Validators.required],
       lifePoints: ['', Validators.required],
       magicPoints: ['', Validators.required],
       attackPoints: ['', Validators.required],
@@ -38,6 +39,7 @@ export class DialogComponent implements OnInit {
       this.characterForm.controls['name'].setValue(this.editData.name);
       this.characterForm.controls['characterClass'].setValue(this.editData.characterClass);
       this.characterForm.controls['race'].setValue(this.editData.race);
+      this.characterForm.controls['level'].setValue(this.editData.level);
       this.characterForm.controls['lifePoints'].setValue(this.editData.lifePoints);
       this.characterForm.controls['magicPoints'].setValue(this.editData.magicPoints);
       this.characterForm.controls['attackPoints'].setValue(this.editData.attackPoints);
@@ -65,7 +67,7 @@ export class DialogComponent implements OnInit {
   }
 
   updateCharacter() {
-    this.characterService.updateCharacter(this.characterForm.value).subscribe({
+    this.characterService.updateCharacter(this.characterForm.value, this.editData.id).subscribe({
       next: (res) => {
         this.characterForm.reset();
         this.dialog.close('update');
