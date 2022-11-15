@@ -1,9 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CharacterService} from "../service/character.service";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Character} from "../model/character";
-import {MatTableDataSource} from "@angular/material/table";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-dialog',
@@ -13,10 +11,12 @@ import {MatTableDataSource} from "@angular/material/table";
 export class DialogComponent implements OnInit {
 
   characterForm: FormGroup;
+  actionBtn: string = "Salvar"
 
   constructor(
     private formBuilder: FormBuilder,
     private characterService: CharacterService,
+    @Inject(MAT_DIALOG_DATA) public editData: any,
     private dialog: MatDialogRef<DialogComponent>) {
   }
 
@@ -31,21 +31,52 @@ export class DialogComponent implements OnInit {
       defensePoints: ['', Validators.required],
       expertisePoints: ['', Validators.required],
     })
+
+    if (this.editData) {
+
+      this.actionBtn = "Atualizar";
+      this.characterForm.controls['name'].setValue(this.editData.name);
+      this.characterForm.controls['characterClass'].setValue(this.editData.characterClass);
+      this.characterForm.controls['race'].setValue(this.editData.race);
+      this.characterForm.controls['lifePoints'].setValue(this.editData.lifePoints);
+      this.characterForm.controls['magicPoints'].setValue(this.editData.magicPoints);
+      this.characterForm.controls['attackPoints'].setValue(this.editData.attackPoints);
+      this.characterForm.controls['defensePoints'].setValue(this.editData.defensePoints);
+      this.characterForm.controls['expertisePoints'].setValue(this.editData.expertisePoints);
+    }
   }
 
   createCharacter() {
-    if (this.characterForm.valid) {
-      this.characterService.createCharacter(this.characterForm.value).subscribe({
-        next: (res) => {
-          // this.getCharacters();
-          this.characterForm.reset();
-          this.dialog.close();
-        },
-        error: () => {
-          alert("Erro ao cadastrar personagem");
-        }
-      })
+    if (!this.editData) {
+      if (this.characterForm.valid) {
+        this.characterService.createCharacter(this.characterForm.value).subscribe({
+          next: (res) => {
+            this.characterForm.reset();
+            this.dialog.close('save');
+          },
+          error: () => {
+            alert("Erro ao cadastrar personagem");
+          }
+        })
+      }
+    } else {
+      this.updateCharacter()
     }
   }
+
+  updateCharacter() {
+    this.characterService.updateCharacter(this.characterForm.value).subscribe({
+      next: (res) => {
+        this.characterForm.reset();
+        this.dialog.close('update');
+      },
+      error: () => {
+        alert("Erro ao atualizar personagem");
+      }
+    })
+  }
+
+
 }
+
 //https://youtu.be/jGbP620NahE?t=3845

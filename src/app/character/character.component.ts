@@ -25,12 +25,27 @@ export class CharacterComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogComponent, {
       width: '30%'
+    }).afterClosed().subscribe(value => {
+      if (value === 'save') {
+        this.getCharacters();
+      }
     });
   }
 
   getCharacters() {
     this.characterService.getCharacters().subscribe((characters: Character[]) => {
       this.dataSource = new MatTableDataSource(characters);
+    });
+  }
+
+  editCharcter(row: any) {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(value => {
+      if (value === 'update') {
+        this.getCharacters();
+      }
     });
   }
 
