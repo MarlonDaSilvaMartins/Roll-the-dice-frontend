@@ -4,6 +4,7 @@ import {Character} from './model/character';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogComponent} from "./dialog/dialog.component";
+import {CharacterDetailComponent} from "./character-detail/character-detail.component";
 
 @Component({
   selector: 'app-character',
@@ -38,7 +39,14 @@ export class CharacterComponent implements OnInit {
     });
   }
 
-  editCharcter(row: any) {
+  viewCharacter(row: any){
+    this.dialog.open(CharacterDetailComponent, {
+      width: '20%',
+      data: row
+    })
+  }
+
+  editCharacter(row: any) {
     this.dialog.open(DialogComponent, {
       width: '30%',
       data: row

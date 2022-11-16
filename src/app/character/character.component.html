@@ -29,7 +29,10 @@
     <ng-container matColumnDef="action">
       <mat-header-cell mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let character">
-        <button mat-icon-button (click)="editCharcter(character)" color="primary">
+        <button mat-icon-button (click)="viewCharacter(character)" color="primary">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button (click)="editCharacter(character)" color="primary">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button (click)="deleteCharacter(character.id)" color="warn">

@@ -13,10 +13,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
 
 @NgModule({
   declarations: [CharacterComponent,
     DialogComponent,
+    CharacterDetailComponent,
   ],
   imports: [
     CommonModule,
