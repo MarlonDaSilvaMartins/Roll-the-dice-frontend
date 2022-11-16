@@ -14,11 +14,14 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
+import { HeaderComponent } from './header/header.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [CharacterComponent,
     DialogComponent,
     CharacterDetailComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
     MatSelectModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatToolbarModule
   ]
 })
 export class CharacterModule {
