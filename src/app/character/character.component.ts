@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogComponent} from "./dialog/dialog.component";
 import {CharacterDetailComponent} from "./character-detail/character-detail.component";
+import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-character',
@@ -39,7 +40,7 @@ export class CharacterComponent implements OnInit {
     });
   }
 
-  viewCharacter(row: any){
+  viewCharacter(row: any) {
     this.dialog.open(CharacterDetailComponent, {
       width: '20%',
       data: row
@@ -57,13 +58,13 @@ export class CharacterComponent implements OnInit {
     });
   }
 
-  deleteCharacter(id: string) {
-    this.characterService.deleteCharacter(id).subscribe({
-      next: (res) => {
+  deleteCharacter(row: any) {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '20%',
+      data: row
+    }).afterClosed().subscribe(value => {
+      if (value === 'delete') {
         this.getCharacters();
-      },
-      error: () => {
-        alert("Erro ao deletar personagem");
       }
     });
   }

@@ -16,12 +16,14 @@ import {MatInputModule} from "@angular/material/input";
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [CharacterComponent,
     DialogComponent,
     CharacterDetailComponent,
     HeaderComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,

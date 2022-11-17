@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <h2>Deseja deletar {{characterName}}?</h2>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="deleteCharacter(id)">Deletar</button>
+</div>
