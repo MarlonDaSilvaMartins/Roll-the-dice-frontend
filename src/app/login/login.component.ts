@@ -11,6 +11,7 @@ import {LoginService} from "./service/login.service";
 })
 export class LoginComponent implements OnInit {
 
+
   loginForm: FormGroup;
   loginError: boolean = false;
 
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
   @Output() submitEM = new EventEmitter();
 
   ngOnInit(): void {
+    document.body.style.backgroundColor = "grey";
+
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       password: ['', Validators.required]
