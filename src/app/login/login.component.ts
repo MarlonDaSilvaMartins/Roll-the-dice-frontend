@@ -1,18 +1,52 @@
-import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import {Input, Component, Output, EventEmitter, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CharacterService} from "../character/service/character.service";
+import {LoginService} from "./service/login.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  loginForm: FormGroup;
+  loginError: boolean = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private loginService: LoginService) {
+  }
 
   @Output() submitEM = new EventEmitter();
 
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      password: ['', Validators.required]
+    })
+  }
+
   login() {
-    this.router.navigate(['/character']);
+    if (!this.loginForm.valid) {
+      for (var a in this.loginForm.controls) {
+        this.loginForm.controls[a].markAsDirty();
+        this.loginForm.controls[a].updateValueAndValidity();
+      }
+    }
+    if (this.loginForm.valid) {
+      this.loginService.getAuth(this.loginForm.value).subscribe({
+        next: (res) => {
+          localStorage.setItem('token', res.id);
+
+          this.router.navigate(['character']);
+        },
+        error: () => {
+          this.loginError = true;
+        }
+      })
+    }
   }
 }

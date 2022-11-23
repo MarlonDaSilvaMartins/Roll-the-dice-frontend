@@ -1,4 +1,6 @@
-export interface Login{
-    name: string;
-    login: string;
+export interface Login {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
 }

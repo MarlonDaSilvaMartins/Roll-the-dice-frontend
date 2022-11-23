@@ -17,7 +17,9 @@ export class CharacterComponent implements OnInit {
   displayedColumns: string[] = ['name', 'characterClass', 'race', 'level', 'action'];
   dataSource: MatTableDataSource<any>;
 
-  constructor(private dialog: MatDialog, private characterService: CharacterService) {
+  constructor(
+    private dialog: MatDialog,
+    private characterService: CharacterService) {
   }
 
   ngOnInit(): void {

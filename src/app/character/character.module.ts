@@ -17,6 +17,7 @@ import { CharacterDetailComponent } from './character-detail/character-detail.co
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [CharacterComponent,
@@ -25,22 +26,23 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     HeaderComponent,
     DeleteDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    CharacterRoutingModule,
-    MatTableModule,
-    FormsModule,
-    FlexModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatToolbarModule
-  ]
+    imports: [
+        CommonModule,
+        CharacterRoutingModule,
+        MatTableModule,
+        FormsModule,
+        FlexModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatToolbarModule,
+        MatMenuModule
+    ]
 })
 export class CharacterModule {
 }

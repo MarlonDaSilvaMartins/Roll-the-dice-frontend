@@ -1,7 +1,12 @@
 <mat-toolbar class="main-header">
   <span class="example-spacer"></span>
-  <span>Usuario</span>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <span>{{user}}</span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
     <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logOut()">
+      <span>Sair</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

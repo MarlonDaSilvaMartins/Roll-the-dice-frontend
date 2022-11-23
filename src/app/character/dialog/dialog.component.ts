@@ -81,4 +81,3 @@ export class DialogComponent implements OnInit {
 
 }
 
-//https://youtu.be/jGbP620NahE?t=3845
