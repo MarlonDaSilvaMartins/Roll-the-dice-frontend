@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   @Output() submitEM = new EventEmitter();
 
   ngOnInit(): void {
+    this.validate();
+
     document.body.style.backgroundColor = "grey";
 
     this.loginForm = this.formBuilder.group({
@@ -50,6 +52,12 @@ export class LoginComponent implements OnInit {
           this.loginError = true;
         }
       })
+    }
+  }
+
+  validate(){
+    if(localStorage.getItem('token')){
+      this.router.navigate(['character']);
     }
   }
 }

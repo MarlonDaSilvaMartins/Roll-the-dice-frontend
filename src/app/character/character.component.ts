@@ -23,6 +23,7 @@ export class CharacterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.body.style.backgroundColor = "white";
     this.getCharacters();
   }
 
