@@ -12,6 +12,7 @@ export class DialogComponent implements OnInit {
 
   characterForm: FormGroup;
   actionBtn: string = "Salvar"
+  actionTitle: string = "Adicionar"
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +37,7 @@ export class DialogComponent implements OnInit {
     if (this.editData) {
 
       this.actionBtn = "Atualizar";
+      this.actionTitle = "Atualizar";
       this.characterForm.controls['name'].setValue(this.editData.name);
       this.characterForm.controls['characterClass'].setValue(this.editData.characterClass);
       this.characterForm.controls['race'].setValue(this.editData.race);
@@ -49,8 +51,8 @@ export class DialogComponent implements OnInit {
   }
 
   createCharacter() {
-    if (!this.editData) {
-      if (this.characterForm.valid) {
+    if (this.characterForm.valid) {
+      if (!this.editData) {
         this.characterService.createCharacter(this.characterForm.value).subscribe({
           next: (res) => {
             this.characterForm.reset();
@@ -60,9 +62,15 @@ export class DialogComponent implements OnInit {
             alert("Erro ao cadastrar personagem");
           }
         })
+      } else {
+        this.updateCharacter()
       }
     } else {
-      this.updateCharacter()
+      Object.keys(this.characterForm.controls).forEach(field => {
+        const control = this.characterForm.get(field);
+        // @ts-ignore
+        control.markAsTouched({onlySelf: true});
+      });
     }
   }
 
@@ -77,7 +85,4 @@ export class DialogComponent implements OnInit {
       }
     })
   }
-
-
 }
-
